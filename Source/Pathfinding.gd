@@ -6,7 +6,6 @@ func set_tilemap(_tilemap: TileMap):
 	tilemap = _tilemap
 
 func walkable_neighbors(pos: Vector2):
-	var cellSize = tilemap.cell_size.x
 	var directions = [Vector2.LEFT, Vector2.DOWN, Vector2.UP, Vector2.RIGHT]
 	var neighborCoordinates = []
 	for c in directions:
@@ -20,7 +19,7 @@ func walkable_neighbors(pos: Vector2):
 # Pathfinding logic
 func bfs(initial, final) -> Array:
 	var visited = []
-	var nodes = {initial: null}
+	var exploredNodes = {initial: null}
 	var queue = [initial]
 	while not queue.empty():
 		var node = queue.front()
@@ -32,13 +31,13 @@ func bfs(initial, final) -> Array:
 		for child in children:
 			if child in visited or child in queue:
 				continue
-			nodes[child] = node
+			exploredNodes[child] = node
 			queue.append(child)
 			
 	var node = final
 	var route: Array = [node]
 	while node != null:
-		var parent = nodes[node]
+		var parent = exploredNodes[node]
 		if parent != null:
 			route.push_front(parent)
 		node = parent

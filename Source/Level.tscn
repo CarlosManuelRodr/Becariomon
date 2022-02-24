@@ -60,5 +60,11 @@ blockCell = 1
 [node name="Beer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 608, 544 )
 
+[node name="Beer2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 736, 288 )
+
+[node name="Beer3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 416, 672 )
+
 [node name="Pathfinding" type="Node2D" parent="."]
 script = ExtResource( 5 )

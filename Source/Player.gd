@@ -18,7 +18,7 @@ func _ready():
 		push_error("Pathfinding couldn't be loaded")
 		
 	pathfinding.set_tilemap(tilemap)
-	stepSize = tilemap.cell_size.x
+	stepSize = int(tilemap.cell_size.x)
 
 func is_path_clear(newWorldPosition: Vector2) -> bool:
 	var tileID = tilemap.get_cellv(newWorldPosition / stepSize)
@@ -31,7 +31,7 @@ func walk_route(origin, destination):
 	for cellPosition in route:
 		position = tilemap.map_to_world(cellPosition)
 		$Sfx.play()
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(0.25), "timeout")
 	isMoving = false
 	
 func handle_directional_input(event):
