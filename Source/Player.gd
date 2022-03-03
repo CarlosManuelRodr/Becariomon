@@ -26,7 +26,7 @@ func is_path_clear(newWorldPosition: Vector2) -> bool:
 	
 func walk_route(origin, destination):
 	isMoving = true
-	var route = pathfinding.bfs(origin, destination)
+	var route = pathfinding.astar(origin, destination)
 	route.pop_front()
 	for cellPosition in route:
 		position = tilemap.map_to_world(cellPosition)
