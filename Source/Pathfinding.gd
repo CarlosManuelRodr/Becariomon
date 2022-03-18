@@ -94,7 +94,6 @@ func dfs(initial: Vector2, final: Vector2) -> Array:
 func astar(initial: Vector2, final: Vector2):
 	var openSet = {initial: AStarNode.new(null, initial, final)}
 	var visited = []
-	var route = []
 	var bestNode: AStarNode = null
 	while not openSet.empty():
 		var bestF = INF

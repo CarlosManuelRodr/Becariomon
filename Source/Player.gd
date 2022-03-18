@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
+enum SearchAlgorithm {BFS, DFS, ASTAR}
+
 export var blockCell: int
+export(SearchAlgorithm) var algorithm = SearchAlgorithm.BFS
 var stepSize: int
 var tilemap: TileMap
 var pathfinding: Pathfinding
@@ -26,7 +29,16 @@ func is_path_clear(newWorldPosition: Vector2) -> bool:
 	
 func walk_route(origin, destination):
 	isMoving = true
-	var route = pathfinding.astar(origin, destination)
+	
+	var route: Array
+	match algorithm:
+		SearchAlgorithm.BFS:
+			route = pathfinding.bfs(origin, destination)
+		SearchAlgorithm.DFS:
+			route = pathfinding.dfs(origin, destination)
+		SearchAlgorithm.ASTAR:
+			route = pathfinding.astar(origin, destination)
+		
 	route.pop_front()
 	for cellPosition in route:
 		position = tilemap.map_to_world(cellPosition)
